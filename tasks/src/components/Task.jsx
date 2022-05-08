@@ -1,5 +1,5 @@
 import React from 'react'
-import {FaTimes, FaTintSlash} from 'react-icons/fa' 
+import {FaTimes} from 'react-icons/fa' 
 
 const Task = ({task, onDelete, onToggle}) => {
   return (
