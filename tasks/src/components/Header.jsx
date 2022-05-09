@@ -2,7 +2,7 @@ import React from 'react'
 import Button from './Button'
 import PropTypes from 'prop-types'
 
-const Header = ({title}) => {
+const Header = ({title, onAdd, viewStateForm}) => {
     const onClick = () =>
     {
         console.log("Click")
@@ -10,7 +10,7 @@ const Header = ({title}) => {
     return (
     <header className='header'>
         <h1>{title}</h1>
-        <Button color='green' text='Nuevo' onClick={onClick}/>
+        <Button color={viewStateForm ? "red": "green"} text={viewStateForm ? 'Ocultar': 'Nueva'} onClick={onAdd}/>
         {/* <Button color='red' text='Borrar'/>
         <Button color='blue' text='Salir'/> */}
     </header>

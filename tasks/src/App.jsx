@@ -1,8 +1,11 @@
 import { useState } from 'react'
+import AddTask from './components/AddTask'
 import Header from  './components/Header'
 import Tasks from './components/Tasks'
 
 function App() {
+
+  const [viewForm, setViewForm] = useState(false);
 
   const [tasks, setTasks] = useState([
     {
@@ -23,8 +26,15 @@ function App() {
       fecha: '11 de Febrero de 2022',
       terminado: false,
     }
-  ])
+  ]);
 
+  //Agregar una tarea
+  const addNewTask = (task) => {
+    // console.log(task);
+    const id = Math.floor(Math.random()*10000)+1;
+    const newTask = {id, ...task}
+    setTasks([...tasks, newTask])
+  }
   //Eliminar una tarea
   const deleteTask = (id) => 
   {
@@ -36,12 +46,13 @@ function App() {
   const finishTask = (id) => 
   {
     // console.log(id);
-    setTasks(tasks.map((task) => task.id === id ? { ...task, terminado: !task.terminado} : task))
+    setTasks(tasks.map((task) => task.id === id ? { ...task, terminado: !task.terminado}: task))
   }
 
   return(
     <section className='container'>
-      <Header />
+      <Header onAdd={()=>setViewForm(!viewForm)} viewStateForm={viewForm}/>
+      {viewForm && <AddTask onAdd={addNewTask} />}
       {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={finishTask}/> : 'No hay tareas por mostrar'}
     </section>
   )
