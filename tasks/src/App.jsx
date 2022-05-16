@@ -53,7 +53,9 @@ function App() {
     <section className='container'>
       <Header onAdd={()=>setViewForm(!viewForm)} viewStateForm={viewForm}/>
       {viewForm && <AddTask onAdd={addNewTask} />}
+
       {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={finishTask}/> : 'No hay tareas por mostrar'}
+      
     </section>
   )
 }
